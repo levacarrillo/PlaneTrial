@@ -31,6 +31,7 @@ namespace PlaneTrial
             backGround_pictureBox.Controls.Add(darkShip1_pictureBox);
             backGround_pictureBox.Controls.Add(darkShip2_pictureBox);
 
+            backGround_pictureBox.Controls.Add(twoLassers_pictureBox);
             Mp3Player.open_file(soundtrack_file);
         }
 
@@ -56,6 +57,16 @@ namespace PlaneTrial
         private void pause_ButtonClick(object sender, EventArgs e) {
 
             Mp3Player.stop();
+        }
+
+        private void leftShip_pictureBox_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void backGround_pictureBox_Click(object sender, EventArgs e)
+        {
+
         }
     }
 

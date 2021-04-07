@@ -47,6 +47,7 @@ namespace PlaneTrial
             this.rightShip_pictureBox = new System.Windows.Forms.PictureBox();
             this.darkShip1_pictureBox = new System.Windows.Forms.PictureBox();
             this.darkShip2_pictureBox = new System.Windows.Forms.PictureBox();
+            this.twoLassers_pictureBox = new System.Windows.Forms.PictureBox();
             this.menuStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.backGround_pictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.spaceShip_pictureBox)).BeginInit();
@@ -57,6 +58,7 @@ namespace PlaneTrial
             ((System.ComponentModel.ISupportInitialize)(this.rightShip_pictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.darkShip1_pictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.darkShip2_pictureBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.twoLassers_pictureBox)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip
@@ -70,7 +72,7 @@ namespace PlaneTrial
             this.exit_Button});
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
             this.menuStrip.Name = "menuStrip";
-            this.menuStrip.Size = new System.Drawing.Size(839, 28);
+            this.menuStrip.Size = new System.Drawing.Size(848, 28);
             this.menuStrip.TabIndex = 0;
             this.menuStrip.Text = "menuStrip";
             // 
@@ -137,10 +139,11 @@ namespace PlaneTrial
             this.backGround_pictureBox.Image = global::PlaneTrial.Properties.Resources.intro_sky;
             this.backGround_pictureBox.Location = new System.Drawing.Point(12, 31);
             this.backGround_pictureBox.Name = "backGround_pictureBox";
-            this.backGround_pictureBox.Size = new System.Drawing.Size(815, 546);
+            this.backGround_pictureBox.Size = new System.Drawing.Size(824, 552);
             this.backGround_pictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.backGround_pictureBox.TabIndex = 1;
             this.backGround_pictureBox.TabStop = false;
+            this.backGround_pictureBox.Click += new System.EventHandler(this.backGround_pictureBox_Click);
             // 
             // spaceShip_pictureBox
             // 
@@ -196,6 +199,7 @@ namespace PlaneTrial
             this.leftShip_pictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.leftShip_pictureBox.TabIndex = 6;
             this.leftShip_pictureBox.TabStop = false;
+            this.leftShip_pictureBox.Click += new System.EventHandler(this.leftShip_pictureBox_Click);
             // 
             // rightShip_pictureBox
             // 
@@ -212,7 +216,7 @@ namespace PlaneTrial
             // 
             this.darkShip1_pictureBox.BackColor = System.Drawing.Color.Transparent;
             this.darkShip1_pictureBox.Image = global::PlaneTrial.Properties.Resources.F5S4_SpaceShip;
-            this.darkShip1_pictureBox.Location = new System.Drawing.Point(244, 454);
+            this.darkShip1_pictureBox.Location = new System.Drawing.Point(244, 453);
             this.darkShip1_pictureBox.Name = "darkShip1_pictureBox";
             this.darkShip1_pictureBox.Size = new System.Drawing.Size(70, 121);
             this.darkShip1_pictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -223,18 +227,29 @@ namespace PlaneTrial
             // 
             this.darkShip2_pictureBox.BackColor = System.Drawing.Color.Transparent;
             this.darkShip2_pictureBox.Image = global::PlaneTrial.Properties.Resources.F5S4_SpaceShip;
-            this.darkShip2_pictureBox.Location = new System.Drawing.Point(553, 454);
+            this.darkShip2_pictureBox.Location = new System.Drawing.Point(553, 452);
             this.darkShip2_pictureBox.Name = "darkShip2_pictureBox";
             this.darkShip2_pictureBox.Size = new System.Drawing.Size(70, 121);
             this.darkShip2_pictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.darkShip2_pictureBox.TabIndex = 9;
             this.darkShip2_pictureBox.TabStop = false;
             // 
+            // twoLassers_pictureBox
+            // 
+            this.twoLassers_pictureBox.Image = global::PlaneTrial.Properties.Resources.two_lassers;
+            this.twoLassers_pictureBox.Location = new System.Drawing.Point(422, 351);
+            this.twoLassers_pictureBox.Name = "twoLassers_pictureBox";
+            this.twoLassers_pictureBox.Size = new System.Drawing.Size(36, 48);
+            this.twoLassers_pictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.twoLassers_pictureBox.TabIndex = 10;
+            this.twoLassers_pictureBox.TabStop = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(839, 589);
+            this.ClientSize = new System.Drawing.Size(848, 595);
+            this.Controls.Add(this.twoLassers_pictureBox);
             this.Controls.Add(this.darkShip2_pictureBox);
             this.Controls.Add(this.darkShip1_pictureBox);
             this.Controls.Add(this.rightShip_pictureBox);
@@ -259,6 +274,7 @@ namespace PlaneTrial
             ((System.ComponentModel.ISupportInitialize)(this.rightShip_pictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.darkShip1_pictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.darkShip2_pictureBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.twoLassers_pictureBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -284,6 +300,7 @@ namespace PlaneTrial
         private System.Windows.Forms.PictureBox rightShip_pictureBox;
         private System.Windows.Forms.PictureBox darkShip1_pictureBox;
         private System.Windows.Forms.PictureBox darkShip2_pictureBox;
+        private System.Windows.Forms.PictureBox twoLassers_pictureBox;
     }
 }
 

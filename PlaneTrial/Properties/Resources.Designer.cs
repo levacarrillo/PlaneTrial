@@ -143,6 +143,16 @@ namespace PlaneTrial.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap two_lassers {
+            get {
+                object obj = ResourceManager.GetObject("two_lassers", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Tynker_SpaceShip {
             get {
                 object obj = ResourceManager.GetObject("Tynker_SpaceShip", resourceCulture);
