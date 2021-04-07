@@ -139,4 +139,10 @@
   <data name="F5S4_SpaceShip" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\F5S4_SpaceShip.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="leftShip" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\leftShip.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="rightShip" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\rightShip.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>

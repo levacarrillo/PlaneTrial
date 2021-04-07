@@ -103,9 +103,29 @@ namespace PlaneTrial.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap leftShip {
+            get {
+                object obj = ResourceManager.GetObject("leftShip", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap night_sky {
             get {
                 object obj = ResourceManager.GetObject("night_sky", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap rightShip {
+            get {
+                object obj = ResourceManager.GetObject("rightShip", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -120,7 +140,6 @@ namespace PlaneTrial.Properties {
             }
         }
         
- 
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
