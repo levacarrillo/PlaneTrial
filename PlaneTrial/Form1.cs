@@ -22,8 +22,12 @@ namespace PlaneTrial
 
             InitializeComponent();
 
+            backGround_pictureBox.Controls.Add(spaceShip_pictureBox);
+            backGround_pictureBox.Controls.Add(rocket1_pictureBox);
+            backGround_pictureBox.Controls.Add(rocket2_pictureBox);
+            backGround_pictureBox.Controls.Add(rocket3_pictureBox);
+
             Mp3Player.open_file(soundtrack_file);
-            
         }
 
         private void start_ButtonClick(object sender, EventArgs e) {
@@ -33,21 +37,31 @@ namespace PlaneTrial
 
         private void easy_ButtonClick(object sender, EventArgs e)
         {
-            pictureBox.Image = global::PlaneTrial.Properties.Resources.blue_sky;
+            backGround_pictureBox.Image = global::PlaneTrial.Properties.Resources.blue_sky;
         }
         
         private void normal_ButtonClick(object sender, EventArgs e)
         {
-            pictureBox.Image = global::PlaneTrial.Properties.Resources.night_sky;
+            backGround_pictureBox.Image = global::PlaneTrial.Properties.Resources.night_sky;
         }
 
         private void hard_ButtonClick(object sender, EventArgs e)
         {
-            pictureBox.Image = global::PlaneTrial.Properties.Resources.blood_sky;
+            backGround_pictureBox.Image = global::PlaneTrial.Properties.Resources.blood_sky;
         }
         private void pause_ButtonClick(object sender, EventArgs e) {
 
             Mp3Player.stop();
+        }
+
+        private void rocket2_pictureBox_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void backGround_pictureBox_Click(object sender, EventArgs e)
+        {
+
         }
     }
 

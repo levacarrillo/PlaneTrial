@@ -38,9 +38,17 @@ namespace PlaneTrial
             this.instructions_Button = new System.Windows.Forms.ToolStripMenuItem();
             this.pause_Button = new System.Windows.Forms.ToolStripMenuItem();
             this.exit_Button = new System.Windows.Forms.ToolStripMenuItem();
-            this.pictureBox = new System.Windows.Forms.PictureBox();
+            this.backGround_pictureBox = new System.Windows.Forms.PictureBox();
+            this.spaceShip_pictureBox = new System.Windows.Forms.PictureBox();
+            this.rocket1_pictureBox = new System.Windows.Forms.PictureBox();
+            this.rocket2_pictureBox = new System.Windows.Forms.PictureBox();
+            this.rocket3_pictureBox = new System.Windows.Forms.PictureBox();
             this.menuStrip.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.backGround_pictureBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.spaceShip_pictureBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.rocket1_pictureBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.rocket2_pictureBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.rocket3_pictureBox)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip
@@ -54,7 +62,7 @@ namespace PlaneTrial
             this.exit_Button});
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
             this.menuStrip.Name = "menuStrip";
-            this.menuStrip.Size = new System.Drawing.Size(800, 28);
+            this.menuStrip.Size = new System.Drawing.Size(839, 28);
             this.menuStrip.TabIndex = 0;
             this.menuStrip.Text = "menuStrip";
             // 
@@ -115,29 +123,84 @@ namespace PlaneTrial
             this.exit_Button.Size = new System.Drawing.Size(47, 24);
             this.exit_Button.Text = "Exit";
             // 
-            // pictureBox
+            // backGround_pictureBox
             // 
-            this.pictureBox.Image = global::PlaneTrial.Properties.Resources.intro_sky;
-            this.pictureBox.Location = new System.Drawing.Point(12, 31);
-            this.pictureBox.Name = "pictureBox";
-            this.pictureBox.Size = new System.Drawing.Size(776, 481);
-            this.pictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox.TabIndex = 1;
-            this.pictureBox.TabStop = false;
+            this.backGround_pictureBox.BackColor = System.Drawing.Color.Transparent;
+            this.backGround_pictureBox.Image = global::PlaneTrial.Properties.Resources.intro_sky;
+            this.backGround_pictureBox.Location = new System.Drawing.Point(12, 31);
+            this.backGround_pictureBox.Name = "backGround_pictureBox";
+            this.backGround_pictureBox.Size = new System.Drawing.Size(815, 546);
+            this.backGround_pictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.backGround_pictureBox.TabIndex = 1;
+            this.backGround_pictureBox.TabStop = false;
+            this.backGround_pictureBox.Click += new System.EventHandler(this.backGround_pictureBox_Click);
+            // 
+            // spaceShip_pictureBox
+            // 
+            this.spaceShip_pictureBox.BackColor = System.Drawing.Color.Transparent;
+            this.spaceShip_pictureBox.Image = global::PlaneTrial.Properties.Resources.Tynker_SpaceShip;
+            this.spaceShip_pictureBox.Location = new System.Drawing.Point(379, 396);
+            this.spaceShip_pictureBox.Name = "spaceShip_pictureBox";
+            this.spaceShip_pictureBox.Size = new System.Drawing.Size(121, 81);
+            this.spaceShip_pictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.spaceShip_pictureBox.TabIndex = 2;
+            this.spaceShip_pictureBox.TabStop = false;
+            // 
+            // rocket1_pictureBox
+            // 
+            this.rocket1_pictureBox.BackColor = System.Drawing.Color.Transparent;
+            this.rocket1_pictureBox.Image = global::PlaneTrial.Properties.Resources.rocket;
+            this.rocket1_pictureBox.Location = new System.Drawing.Point(334, 31);
+            this.rocket1_pictureBox.Name = "rocket1_pictureBox";
+            this.rocket1_pictureBox.Size = new System.Drawing.Size(42, 121);
+            this.rocket1_pictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.rocket1_pictureBox.TabIndex = 3;
+            this.rocket1_pictureBox.TabStop = false;
+            // 
+            // rocket2_pictureBox
+            // 
+            this.rocket2_pictureBox.BackColor = System.Drawing.Color.Transparent;
+            this.rocket2_pictureBox.Image = global::PlaneTrial.Properties.Resources.rocket;
+            this.rocket2_pictureBox.Location = new System.Drawing.Point(395, 31);
+            this.rocket2_pictureBox.Name = "rocket2_pictureBox";
+            this.rocket2_pictureBox.Size = new System.Drawing.Size(42, 121);
+            this.rocket2_pictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.rocket2_pictureBox.TabIndex = 4;
+            this.rocket2_pictureBox.TabStop = false;
+            this.rocket2_pictureBox.Click += new System.EventHandler(this.rocket2_pictureBox_Click);
+            // 
+            // rocket3_pictureBox
+            // 
+            this.rocket3_pictureBox.BackColor = System.Drawing.Color.Transparent;
+            this.rocket3_pictureBox.Image = global::PlaneTrial.Properties.Resources.rocket;
+            this.rocket3_pictureBox.Location = new System.Drawing.Point(458, 31);
+            this.rocket3_pictureBox.Name = "rocket3_pictureBox";
+            this.rocket3_pictureBox.Size = new System.Drawing.Size(42, 121);
+            this.rocket3_pictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.rocket3_pictureBox.TabIndex = 5;
+            this.rocket3_pictureBox.TabStop = false;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 524);
-            this.Controls.Add(this.pictureBox);
+            this.ClientSize = new System.Drawing.Size(839, 589);
+            this.Controls.Add(this.rocket3_pictureBox);
+            this.Controls.Add(this.rocket2_pictureBox);
+            this.Controls.Add(this.rocket1_pictureBox);
+            this.Controls.Add(this.spaceShip_pictureBox);
+            this.Controls.Add(this.backGround_pictureBox);
             this.Controls.Add(this.menuStrip);
             this.MainMenuStrip = this.menuStrip;
             this.Name = "Form1";
             this.Text = "Form1";
             this.menuStrip.ResumeLayout(false);
             this.menuStrip.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.backGround_pictureBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.spaceShip_pictureBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.rocket1_pictureBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.rocket2_pictureBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.rocket3_pictureBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -147,7 +210,7 @@ namespace PlaneTrial
 
         private System.Windows.Forms.MenuStrip menuStrip;
         private System.Windows.Forms.ToolStripMenuItem start_Button;
-        private System.Windows.Forms.PictureBox pictureBox;
+        private System.Windows.Forms.PictureBox backGround_pictureBox;
         private System.Windows.Forms.ToolStripMenuItem level_Button;
         private System.Windows.Forms.ToolStripMenuItem instructions_Button;
         private System.Windows.Forms.ToolStripMenuItem pause_Button;
@@ -155,6 +218,10 @@ namespace PlaneTrial
         private System.Windows.Forms.ToolStripMenuItem easy_Button;
         private System.Windows.Forms.ToolStripMenuItem normal_Button;
         private System.Windows.Forms.ToolStripMenuItem hard_Button;
+        private System.Windows.Forms.PictureBox spaceShip_pictureBox;
+        private System.Windows.Forms.PictureBox rocket1_pictureBox;
+        private System.Windows.Forms.PictureBox rocket2_pictureBox;
+        private System.Windows.Forms.PictureBox rocket3_pictureBox;
     }
 }
 

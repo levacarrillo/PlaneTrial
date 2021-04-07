@@ -83,6 +83,16 @@ namespace PlaneTrial.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap F5S4_SpaceShip {
+            get {
+                object obj = ResourceManager.GetObject("F5S4_SpaceShip", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap intro_sky {
             get {
                 object obj = ResourceManager.GetObject("intro_sky", resourceCulture);
@@ -96,6 +106,27 @@ namespace PlaneTrial.Properties {
         internal static System.Drawing.Bitmap night_sky {
             get {
                 object obj = ResourceManager.GetObject("night_sky", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap rocket {
+            get {
+                object obj = ResourceManager.GetObject("rocket", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+ 
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Tynker_SpaceShip {
+            get {
+                object obj = ResourceManager.GetObject("Tynker_SpaceShip", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
