@@ -15,13 +15,15 @@ namespace PlaneTrial
 {
     public partial class Form1 : Form
     {
-        private string soundtrack_path = Path.Combine( Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.Parent.FullName,
-                                                       "Fatboy_Slim_-_Acid_8000.mp3");
+        private static string resources_path = Directory.GetParent(Application.StartupPath).Parent.Parent.Parent.FullName + "\\Resources";
+        private static string soundtrack_file = resources_path + "\\" + "Fatboy_Slim_-_Acid_8000.mp3";
+
         public Form1() {
 
             InitializeComponent();
 
-            Mp3Player.open_file(soundtrack_path);
+            Mp3Player.open_file(soundtrack_file);
+            
         }
 
         private void start_ButtonClick(object sender, EventArgs e) {
@@ -29,6 +31,20 @@ namespace PlaneTrial
             Mp3Player.play();
         }
 
+        private void easy_ButtonClick(object sender, EventArgs e)
+        {
+            pictureBox.Image = global::PlaneTrial.Properties.Resources.blue_sky;
+        }
+        
+        private void normal_ButtonClick(object sender, EventArgs e)
+        {
+            pictureBox.Image = global::PlaneTrial.Properties.Resources.night_sky;
+        }
+
+        private void hard_ButtonClick(object sender, EventArgs e)
+        {
+            pictureBox.Image = global::PlaneTrial.Properties.Resources.blood_sky;
+        }
         private void pause_ButtonClick(object sender, EventArgs e) {
 
             Mp3Player.stop();
@@ -40,8 +56,7 @@ namespace PlaneTrial
         [DllImport("winmm.dll")]
         private static extern long mciSendString(string lpstrCommand, StringBuilder lpstrReturnString,
                                                    int uReturnLength, int hwdCallBack);
-        public static void open_file(string File)
-        {
+        public static void open_file(string File) {
 
             string Format = @"open ""{0}"" type MPEGVideo alias MediaFile";
             string command = string.Format(Format, File);
@@ -49,15 +64,13 @@ namespace PlaneTrial
             Debug.WriteLine("Sound track path->" + File);
         }
 
-        public static void play()
-        {
+        public static void play() {
 
             string command = "Play MediaFile";
             mciSendString(command, null, 0, 0);
             Debug.WriteLine("Playing soundtrack");
         }
-        public static void stop()
-        {
+        public static void stop() {
 
             string command = "stop MediaFile";
             mciSendString(command, null, 0, 0);
