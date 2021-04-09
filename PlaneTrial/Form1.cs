@@ -22,41 +22,35 @@ namespace PlaneTrial
         private static string level = "easy";
 
         private static int ship_increment   = 13;
-        private static int rocket_increment =  4;
         private static int lasser_increment = 15;
-        private static int darkShip_increment  = 1;
-        private static int shipEnemy_increment = 2;
 
-        private static int bGroundLimit_X;
-        private static int bGroundLimit_Y;
-        private static int rocket_start_pos = -125;
-        private static int leftShip_start_pos  = 830;
-        private static int rightShip_start_pos = -90;
-        private static int darkShip_start_pos  = 549;
+        private static int[] enemy_increment = { 4, 4, 4, -2, 2, -1, -1 };
+        private static int[] enemy_rand_pos  = { 300, 500, 600, 320, 320, 250, 550 };
+        private static int[] enemy_restric   = { 522, 522, 522, -87, 824, -121, -121 };
+        private static int[] enemy_start_pos = { -125, -125, -125, 830, -90, 549, 549 };
 
-
+        private static PictureBox[] enemies;
         public Form1() {
 
             InitializeComponent();
 
             spaceShipPos_X = spaceShip.Location.X;
             spaceShipPos_Y = spaceShip.Location.Y;
-            bGroundLimit_X = backGround.Width;
-            bGroundLimit_Y = backGround.Height;
+
+            enemies = new PictureBox[7] { rocket1, rocket2, rocket3, leftShip, rightShip, darkShip1, darkShip2 };
             Mp3Player.open_file(soundtrack_file);
         }
 
         private void start_ButtonClick(object sender, EventArgs e) {
             timer.Start();
-            Mp3Player.play();
+            //Mp3Player.play();
         }
 
-        private void easy_ButtonClick(object sender, EventArgs e)
-        {
+        private void easy_ButtonClick(object sender, EventArgs e) {
             KeyDown += new KeyEventHandler(Form1_KeyDown);
 
             level = "easy";
-            backGround.Image = global::PlaneTrial.Properties.Resources.blue_sky;
+            backGround.Image = Properties.Resources.blue_sky;
             spaceShip.Visible = true;
             rocket1.Visible = true;
             rocket2.Visible = true;
@@ -66,7 +60,7 @@ namespace PlaneTrial
         private void normal_ButtonClick(object sender, EventArgs e)
         {
             level = "normal";
-            backGround.Image = global::PlaneTrial.Properties.Resources.night_sky;
+            backGround.Image = Properties.Resources.night_sky;
            
             leftShip.Visible = true;
             rightShip.Visible = true;
@@ -78,7 +72,7 @@ namespace PlaneTrial
         private void hard_ButtonClick(object sender, EventArgs e)
         {
             level = "hard";
-            backGround.Image = global::PlaneTrial.Properties.Resources.blood_sky;
+            backGround.Image = Properties.Resources.blood_sky;
 
             leftShip.Visible = true;
             rightShip.Visible = true;
@@ -98,7 +92,7 @@ namespace PlaneTrial
             switch (e.KeyCode)
             {
                 case Keys.Right: 
-                    if(spaceShipPos_X < bGroundLimit_X - 130) spaceShipPos_X += ship_increment; 
+                    if(spaceShipPos_X < backGround.Width - 130) spaceShipPos_X += ship_increment; 
                     break;
                 case Keys.Left:  
                     if(spaceShipPos_X > 5) spaceShipPos_X -= ship_increment; 
@@ -107,7 +101,7 @@ namespace PlaneTrial
                     if(spaceShipPos_Y > 10) spaceShipPos_Y -= ship_increment; 
                     break;
                 case Keys.Down:  
-                    if(spaceShipPos_Y < bGroundLimit_Y - 100) spaceShipPos_Y += ship_increment; 
+                    if(spaceShipPos_Y < backGround.Height - 100) spaceShipPos_Y += ship_increment; 
                     break;
                 case Keys.Space: 
                     lassersPos_X = spaceShipPos_X + 43;
@@ -121,80 +115,60 @@ namespace PlaneTrial
             set_position(ref spaceShip, spaceShipPos_X, spaceShipPos_Y);
         }
         private void timer1_Tick(object sender, EventArgs e) {
-            move_components();
 
-            if(rocket1.Bounds.IntersectsWith(twoLassers.Bounds)) vanish(ref rocket1);
-            if(rocket2.Bounds.IntersectsWith(twoLassers.Bounds)) vanish(ref rocket2);
-            if(rocket3.Bounds.IntersectsWith(twoLassers.Bounds)) vanish(ref rocket3);
-
-            if(leftShip.Bounds.IntersectsWith(twoLassers.Bounds)) vanish(ref leftShip);
-            if (rightShip.Bounds.IntersectsWith(twoLassers.Bounds)) vanish(ref rightShip);
-
-            if(darkShip1.Bounds.IntersectsWith(twoLassers.Bounds)) vanish(ref darkShip1);
-            if (darkShip2.Bounds.IntersectsWith(twoLassers.Bounds)) vanish(ref darkShip2);
+            beam_lasser();
+            start_level1();
+            if (level == "normal" || level == "hard") start_level2();
+            if (level == "hard") start_level3();
         }
-        private void vanish(ref System.Windows.Forms.PictureBox image) {
+        private void vanish(ref PictureBox image) {
             image.Visible = false;
         }
-        private void set_position(ref System.Windows.Forms.PictureBox image, int x, int y) {
+        private void set_position(ref PictureBox image, int x, int y) {
             image.Location = new System.Drawing.Point(x, y);
         }
-
-        private void move_components() {
-            set_position(ref rocket1, 300, rocket1.Location.Y + rocket_increment);
-            set_position(ref rocket2, 500, rocket2.Location.Y + rocket_increment);
-            set_position(ref rocket3, 600, rocket3.Location.Y + rocket_increment);
-
-            if(rocket1.Location.Y >= bGroundLimit_Y) {
-                set_position(ref rocket1, 300, rocket_start_pos);
-                rocket1.Visible = true;
-            } 
-                
-            if(rocket2.Location.Y >= bGroundLimit_Y) {
-                set_position(ref rocket2, 300, rocket_start_pos);
-                rocket2.Visible = true;
+        private void beam_lasser() {
+            for (int i = 0; i < enemies.Length; i++) {
+                if (enemies[i].Bounds.IntersectsWith(twoLassers.Bounds))
+                    vanish(ref enemies[i]);
             }
-
-            if (rocket3.Location.Y >= bGroundLimit_Y) {
-                set_position(ref rocket3, 300, rocket_start_pos);
-                rocket3.Visible = true;
-            }
-            if (level == "normal" || level == "hard")
-            {
-                set_position(ref leftShip, leftShip.Location.X - shipEnemy_increment, 320);
-                set_position(ref rightShip, rightShip.Location.X + shipEnemy_increment, 320);
-
-
-                if (leftShip.Location.X <= -87) {
-                    set_position(ref leftShip, leftShip_start_pos, 320);
-                    leftShip.Visible = true;
-                }
-                if (rightShip.Location.X >= bGroundLimit_X) {
-                    set_position(ref rightShip, rightShip_start_pos, 320);
-                    rightShip.Visible = true;
-                } 
-                    
-            }
-
-            if (level == "hard")
-            {
-                set_position(ref darkShip1, 250, darkShip1.Location.Y - darkShip_increment);
-                set_position(ref darkShip2, 550, darkShip2.Location.Y - darkShip_increment);
-
-                if (darkShip1.Location.Y <= -121) {
-                    set_position(ref darkShip1, 250, darkShip_start_pos);
-                    darkShip1.Visible = true;
-                }
-                if (darkShip2.Location.Y <= -121) {
-                    set_position(ref darkShip2, 550, darkShip_start_pos);
-                    darkShip2.Visible = true;
-                }
-            }
-
-            if (lassersPos_Y > -200)
-            {
+            if (lassersPos_Y > -200) {
                 lassersPos_Y = lassersPos_Y - lasser_increment;
                 set_position(ref twoLassers, lassersPos_X, lassersPos_Y);
+            }
+        }
+        private void start_level1() {
+
+            for(int i = 0; i < 3; i++) {
+                set_position(ref enemies[i], enemy_rand_pos[i], enemies[i].Location.Y + enemy_increment[i]);
+
+                if (enemies[i].Location.Y >= enemy_restric[i]) {
+                    set_position(ref enemies[i], enemy_rand_pos[i], enemy_start_pos[i]);
+                    enemies[i].Visible = true;
+                }
+            }
+        }
+        private void start_level2() {
+            set_position(ref enemies[3], enemies[3].Location.X + enemy_increment[3], enemy_rand_pos[3]);
+            set_position(ref enemies[4], enemies[4].Location.X + enemy_increment[4], enemy_rand_pos[4]);
+
+            if (enemies[3].Location.X <= enemy_restric[3]) {
+                set_position(ref enemies[3], enemy_start_pos[3], enemy_rand_pos[3]);
+                enemies[3].Visible = true;
+            }
+            if (enemies[4].Location.X >= enemy_restric[4]) {
+                set_position(ref enemies[4], enemy_start_pos[4], enemy_rand_pos[4]);
+                enemies[4].Visible = true;
+            }
+        }
+        private void start_level3() {
+            for (int i = 5; i < enemies.Length; i++) {
+                set_position(ref enemies[i], enemy_rand_pos[i], enemies[i].Location.Y + enemy_increment[i]);
+
+                if (enemies[i].Location.Y <= enemy_restric[i]) {
+                    set_position(ref enemies[i], enemy_rand_pos[i], enemy_start_pos[i]);
+                    enemies[i].Visible = true;
+                }
             }
         }
     }
