@@ -48,7 +48,7 @@ namespace PlaneTrial
 
         private void start_ButtonClick(object sender, EventArgs e) {
             timer.Start();
-            //Mp3Player.play();
+            Mp3Player.play();
         }
 
         private void easy_ButtonClick(object sender, EventArgs e)
@@ -121,39 +121,81 @@ namespace PlaneTrial
             set_position(ref spaceShip, spaceShipPos_X, spaceShipPos_Y);
         }
         private void timer1_Tick(object sender, EventArgs e) {
+            move_components();
+
+            if(rocket1.Bounds.IntersectsWith(twoLassers.Bounds)) vanish(ref rocket1);
+            if(rocket2.Bounds.IntersectsWith(twoLassers.Bounds)) vanish(ref rocket2);
+            if(rocket3.Bounds.IntersectsWith(twoLassers.Bounds)) vanish(ref rocket3);
+
+            if(leftShip.Bounds.IntersectsWith(twoLassers.Bounds)) vanish(ref leftShip);
+            if (rightShip.Bounds.IntersectsWith(twoLassers.Bounds)) vanish(ref rightShip);
+
+            if(darkShip1.Bounds.IntersectsWith(twoLassers.Bounds)) vanish(ref darkShip1);
+            if (darkShip2.Bounds.IntersectsWith(twoLassers.Bounds)) vanish(ref darkShip2);
+        }
+        private void vanish(ref System.Windows.Forms.PictureBox image) {
+            image.Visible = false;
+        }
+        private void set_position(ref System.Windows.Forms.PictureBox image, int x, int y) {
+            image.Location = new System.Drawing.Point(x, y);
+        }
+
+        private void move_components() {
             set_position(ref rocket1, 300, rocket1.Location.Y + rocket_increment);
             set_position(ref rocket2, 500, rocket2.Location.Y + rocket_increment);
             set_position(ref rocket3, 600, rocket3.Location.Y + rocket_increment);
 
-            if (rocket1.Location.Y >= bGroundLimit_Y) set_position(ref rocket1, 300, rocket_start_pos);
-            if (rocket2.Location.Y >= bGroundLimit_Y) set_position(ref rocket2, 300, rocket_start_pos);
-            if (rocket3.Location.Y >= bGroundLimit_Y) set_position(ref rocket3, 300, rocket_start_pos);
+            if(rocket1.Location.Y >= bGroundLimit_Y) {
+                set_position(ref rocket1, 300, rocket_start_pos);
+                rocket1.Visible = true;
+            } 
+                
+            if(rocket2.Location.Y >= bGroundLimit_Y) {
+                set_position(ref rocket2, 300, rocket_start_pos);
+                rocket2.Visible = true;
+            }
 
-            if (level == "normal" || level == "hard") {
-                set_position(ref leftShip,  leftShip.Location.X  - shipEnemy_increment, 320);
+            if (rocket3.Location.Y >= bGroundLimit_Y) {
+                set_position(ref rocket3, 300, rocket_start_pos);
+                rocket3.Visible = true;
+            }
+            if (level == "normal" || level == "hard")
+            {
+                set_position(ref leftShip, leftShip.Location.X - shipEnemy_increment, 320);
                 set_position(ref rightShip, rightShip.Location.X + shipEnemy_increment, 320);
 
 
-                if (leftShip.Location.X <= -87) set_position(ref leftShip, leftShip_start_pos, 320);
-                if (rightShip.Location.X >= bGroundLimit_X) set_position(ref rightShip, rightShip_start_pos, 320);
+                if (leftShip.Location.X <= -87) {
+                    set_position(ref leftShip, leftShip_start_pos, 320);
+                    leftShip.Visible = true;
+                }
+                if (rightShip.Location.X >= bGroundLimit_X) {
+                    set_position(ref rightShip, rightShip_start_pos, 320);
+                    rightShip.Visible = true;
+                } 
+                    
             }
 
-            if (level == "hard") {
+            if (level == "hard")
+            {
                 set_position(ref darkShip1, 250, darkShip1.Location.Y - darkShip_increment);
                 set_position(ref darkShip2, 550, darkShip2.Location.Y - darkShip_increment);
 
-
-                if (darkShip1.Location.Y <= -121) set_position(ref darkShip1, 250, darkShip_start_pos);
-                if (darkShip2.Location.Y <= -121) set_position(ref darkShip2, 550, darkShip_start_pos);
+                if (darkShip1.Location.Y <= -121) {
+                    set_position(ref darkShip1, 250, darkShip_start_pos);
+                    darkShip1.Visible = true;
+                }
+                if (darkShip2.Location.Y <= -121) {
+                    set_position(ref darkShip2, 550, darkShip_start_pos);
+                    darkShip2.Visible = true;
+                }
             }
 
-            if(lassersPos_Y > -60) {
+            if (lassersPos_Y > -200)
+            {
                 lassersPos_Y = lassersPos_Y - lasser_increment;
                 set_position(ref twoLassers, lassersPos_X, lassersPos_Y);
             }
-        }
-        private void set_position(ref System.Windows.Forms.PictureBox image, int x, int y) {
-            image.Location = new System.Drawing.Point(x, y);
         }
     }
 
