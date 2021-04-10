@@ -39,6 +39,9 @@ namespace PlaneTrial
 
             spaceShipPos_X = spaceShip.Location.X;
             spaceShipPos_Y = spaceShip.Location.Y;
+            
+            score_label.Text =  "Score: " + score;
+            attempts_label.Text = "Attempts: " + attempts;
 
             enemies = new PictureBox[7] { rocket1, rocket2, rocket3, leftShip, rightShip, darkShip1, darkShip2 };
             Mp3Player.open_file(soundtrack_file);
@@ -151,12 +154,14 @@ namespace PlaneTrial
                 if (spaceShip.Bounds.IntersectsWith(enemies[i].Bounds) && enemies[i].Visible) {
                     set_start_pose();
                     attempts -= 1;
+                    attempts_label.Text = "Attempts: " + attempts;
                 }
                 if (enemies[i].Bounds.IntersectsWith(twoLassers.Bounds) && enemies[i].Visible) {
                     vanish(ref enemies[i]);
                     if (i < 3) score++;
                     else if (i < 5) score += 3;
                     else score += 5;
+                    score_label.Text = "Score: " + score;
                 }
             }
         }

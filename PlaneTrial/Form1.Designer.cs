@@ -49,6 +49,8 @@ namespace PlaneTrial
             this.darkShip1 = new System.Windows.Forms.PictureBox();
             this.darkShip2 = new System.Windows.Forms.PictureBox();
             this.twoLassers = new System.Windows.Forms.PictureBox();
+            this.score_label = new System.Windows.Forms.Label();
+            this.attempts_label = new System.Windows.Forms.Label();
             this.timer = new System.Windows.Forms.Timer(this.components);
             this.menuStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.backGround)).BeginInit();
@@ -263,6 +265,26 @@ namespace PlaneTrial
             this.twoLassers.TabStop = false;
             this.twoLassers.Visible = false;
             // 
+            // score_label
+            // 
+            this.score_label.AutoSize = true;
+            this.score_label.BackColor = System.Drawing.Color.Transparent;
+            this.score_label.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.score_label.Location = new System.Drawing.Point(699, 82);
+            this.score_label.Name = "score_label";
+            this.score_label.Size = new System.Drawing.Size(0, 28);
+            this.score_label.TabIndex = 3;
+            // 
+            // attempts_label
+            // 
+            this.attempts_label.AutoSize = true;
+            this.attempts_label.BackColor = System.Drawing.Color.Transparent;
+            this.attempts_label.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.attempts_label.Location = new System.Drawing.Point(699, 50);
+            this.attempts_label.Name = "attempts_label";
+            this.attempts_label.Size = new System.Drawing.Size(0, 28);
+            this.attempts_label.TabIndex = 2;
+            // 
             // timer
             // 
             this.timer.Interval = 20;
@@ -273,6 +295,8 @@ namespace PlaneTrial
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(848, 595);
+            this.Controls.Add(this.score_label);
+            this.Controls.Add(this.attempts_label);
             this.Controls.Add(this.backGround);
             this.Controls.Add(this.menuStrip);
             this.MainMenuStrip = this.menuStrip;
@@ -318,6 +342,8 @@ namespace PlaneTrial
         private System.Windows.Forms.PictureBox twoLassers;
         private System.Windows.Forms.Timer timer;
         private System.Windows.Forms.PictureBox backGround;
+        private System.Windows.Forms.Label attempts_label;
+        private System.Windows.Forms.Label score_label;
     }
 }
 
