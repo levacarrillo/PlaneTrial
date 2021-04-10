@@ -3,6 +3,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
+using System.Threading.Tasks;
 using System.IO;
 
 
@@ -24,9 +25,9 @@ namespace PlaneTrial
         private static string level = "easy";
 
         private static int ship_increment   = 13;
-        private static int lasser_increment = 15;
+        private static int lasser_increment = 18;
 
-        private static int[] enemy_increment = { 4, 4, 4, -2, 2, -1, -1 };
+        private static int[] enemy_increment = { 6, 6, 6, -3, 3, -1, -1 };
         private static int[] enemy_rand_pos  = { 300, 500, 600, 320, 320, 250, 550 };
         private static int[] enemy_restric   = { 522, 522, 522, -87, 824, -121, -121 };
         private static int[] enemy_start_pos = { -125, -125, -125, 830, -90, 549, 549 };
@@ -43,14 +44,31 @@ namespace PlaneTrial
             Mp3Player.open_file(soundtrack_file);
         }
 
+        private async void set_start_pose() {
+            spaceShipPos_X = 369;
+            spaceShipPos_Y = 399;
+            set_position(ref twoLassers, -200, -200);
+            set_position(ref spaceShip, spaceShipPos_X, spaceShipPos_Y);
+            set_position(ref  leftShip, enemy_start_pos[3], enemy_rand_pos[3]);
+            set_position(ref rightShip, enemy_start_pos[4], enemy_rand_pos[4]);
+
+            for(int i=0; i<3; i++) 
+                set_position(ref enemies[i], enemy_rand_pos[i], enemy_start_pos[i]);
+            for (int i = 5; i < enemies.Length; i++)
+                set_position(ref enemies[i], enemy_rand_pos[i], enemy_start_pos[i]);
+            
+            
+            timer.Stop();
+            await Task.Delay(500);
+            timer.Start();
+        }
         private void start_ButtonClick(object sender, EventArgs e) {
             timer.Start();
             //Mp3Player.play();
+            KeyDown += new KeyEventHandler(Form1_KeyDown);
         }
 
         private void easy_ButtonClick(object sender, EventArgs e) {
-            KeyDown += new KeyEventHandler(Form1_KeyDown);
-
             level = "easy";
             backGround.Image = Properties.Resources.blue_sky;
             spaceShip.Visible = true;
@@ -58,25 +76,30 @@ namespace PlaneTrial
             rocket2.Visible = true;
             rocket3.Visible = true;
 
+            leftShip.Visible  = false;
+            rightShip.Visible = false;
+
+            darkShip1.Visible = false;
+            darkShip2.Visible = false;
         }
         private void normal_ButtonClick(object sender, EventArgs e)
         {
             level = "normal";
             backGround.Image = Properties.Resources.night_sky;
-           
-            leftShip.Visible = true;
+            spaceShip.Visible = true;
+            leftShip.Visible  = true;
             rightShip.Visible = true;
 
             darkShip1.Visible = false;
-            darkShip1.Visible = false;
+            darkShip2.Visible = false;
         }
 
         private void hard_ButtonClick(object sender, EventArgs e)
         {
             level = "hard";
             backGround.Image = Properties.Resources.blood_sky;
-
-            leftShip.Visible = true;
+            spaceShip.Visible = true;
+            leftShip.Visible  = true;
             rightShip.Visible = true;
 
             darkShip1.Visible = true;
@@ -84,9 +107,9 @@ namespace PlaneTrial
         }
 
         private void pause_ButtonClick(object sender, EventArgs e) {
-
             timer.Stop();
             Mp3Player.stop();
+            KeyDown -= new KeyEventHandler(Form1_KeyDown);
         }
 
         private void Form1_KeyDown(object sender, KeyEventArgs e)
@@ -111,17 +134,31 @@ namespace PlaneTrial
                     twoLassers.Visible = true;
                     set_position(ref twoLassers, lassersPos_X, lassersPos_Y);
                     break;
-                default: Debug.WriteLine("Key not useful"); break;
+                default: Debug.WriteLine("The button is not useful"); break;
             }
 
             set_position(ref spaceShip, spaceShipPos_X, spaceShipPos_Y);
         }
-        private void timer1_Tick(object sender, EventArgs e) {
+        private void timer1_Tick(object sender, EventArgs e)
+        {
 
             beam_lasser();
             start_level1();
             if (level == "normal" || level == "hard") start_level2();
             if (level == "hard") start_level3();
+
+            for (int i = 0; i < enemies.Length; i++) {
+                if (spaceShip.Bounds.IntersectsWith(enemies[i].Bounds) && enemies[i].Visible) {
+                    set_start_pose();
+                    attempts -= 1;
+                }
+                if (enemies[i].Bounds.IntersectsWith(twoLassers.Bounds) && enemies[i].Visible) {
+                    vanish(ref enemies[i]);
+                    if (i < 3) score++;
+                    else if (i < 5) score += 3;
+                    else score += 5;
+                }
+            }
         }
         private void vanish(ref PictureBox image) {
             image.Visible = false;
@@ -130,22 +167,12 @@ namespace PlaneTrial
             image.Location = new System.Drawing.Point(x, y);
         }
         private void beam_lasser() {
-            for (int i = 0; i < enemies.Length; i++) {
-                if (enemies[i].Bounds.IntersectsWith(twoLassers.Bounds) && enemies[i].Visible) {
-                    vanish(ref enemies[i]);
-                    if (i < 3) score++;
-                    else if (i < 5) score += 3;
-                    else score += 5;
-                    Debug.WriteLine("------Score->" + score);
-                } 
-            }
             if (lassersPos_Y > -200) {
                 lassersPos_Y = lassersPos_Y - lasser_increment;
                 set_position(ref twoLassers, lassersPos_X, lassersPos_Y);
             }
         }
         private void start_level1() {
-
             for(int i = 0; i < 3; i++) {
                 set_position(ref enemies[i], enemy_rand_pos[i], enemies[i].Location.Y + enemy_increment[i]);
 

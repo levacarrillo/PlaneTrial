@@ -265,7 +265,7 @@ namespace PlaneTrial
             // 
             // timer
             // 
-            this.timer.Interval = 1;
+            this.timer.Interval = 20;
             this.timer.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // Form1
