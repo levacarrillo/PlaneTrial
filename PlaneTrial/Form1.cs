@@ -61,13 +61,11 @@ namespace PlaneTrial
             for (int i = 5; i < enemies.Length; i++)
                 set_position(ref enemies[i], enemy_rand_pos[i], enemy_start_pos[i]);
             
-            
             timer.Stop();
-            await Task.Delay(500);
-            timer.Start();
+            await Task.Delay(800);
         }
         private void start_ButtonClick(object sender, EventArgs e) {
-            //Mp3Player.play();
+            Mp3Player.play();
             KeyDown += new KeyEventHandler(Form1_KeyDown);
             if (level == "easy") easy_ButtonClick(sender, e);
             else if (level == "normal") normal_ButtonClick(sender, e);
@@ -75,6 +73,8 @@ namespace PlaneTrial
             timer.Start();
             start_Button.Enabled = false;
             pause_Button.Enabled = true;
+            score_label.Text = "Score: " + score;
+            attempts_label.Text = "Attempts: " + attempts;
         }
         private void easy_ButtonClick(object sender, EventArgs e) {
             level = "easy";
@@ -158,6 +158,8 @@ namespace PlaneTrial
                     set_start_pose();
                     attempts -= 1;
                     attempts_label.Text = "Attempts: " + attempts;
+                    if (attempts < 1) losser(sender, e);
+                    else timer.Start();
                 }
                 if (enemies[i].Bounds.IntersectsWith(twoLassers.Bounds) && enemies[i].Visible) {
                     vanish(ref enemies[i]);
@@ -223,6 +225,19 @@ namespace PlaneTrial
             exit.Show();
             pause_ButtonClick(sender, e);
         }
+        private void losser(object sender, EventArgs e) {
+            Losser losser = new Losser();
+            losser.Show();
+            pause_ButtonClick(sender, e);
+            backGround.Image = Properties.Resources.intro_sky;
+            level = "easy";
+            score = 0;
+            attempts = 3;
+            spaceShip.Visible = false;
+        }
+        public static int get_score() {
+            return score;
+        }
     }
 
     public class Mp3Player
@@ -237,7 +252,6 @@ namespace PlaneTrial
             mciSendString(command, null, 0, 0);
             Debug.WriteLine("Sound track path->" + File);
         }
-
         public static void play() {
 
             string command = "Play MediaFile";

@@ -63,6 +63,16 @@ namespace PlaneTrial.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap arrows_keys {
+            get {
+                object obj = ResourceManager.GetObject("arrows_keys", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap blood_sky {
             get {
                 object obj = ResourceManager.GetObject("blood_sky", resourceCulture);
@@ -136,6 +146,16 @@ namespace PlaneTrial.Properties {
         internal static System.Drawing.Bitmap rocket {
             get {
                 object obj = ResourceManager.GetObject("rocket", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap space_key {
+            get {
+                object obj = ResourceManager.GetObject("space_key", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
