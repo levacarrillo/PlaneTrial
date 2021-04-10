@@ -138,6 +138,7 @@ namespace PlaneTrial
             this.exit_Button.Name = "exit_Button";
             this.exit_Button.Size = new System.Drawing.Size(47, 24);
             this.exit_Button.Text = "Exit";
+            this.exit_Button.Click += new System.EventHandler(this.exit_ButtonClick);
             // 
             // backGround
             // 

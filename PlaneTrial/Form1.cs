@@ -214,7 +214,14 @@ namespace PlaneTrial
             }
         }
         private void instructions_ButtonClick(object sender, EventArgs e) {
-            //Form2 = new Form2();
+            Instructions instructions = new Instructions();
+            instructions.Show();
+            pause_ButtonClick(sender, e);
+        }
+        private void exit_ButtonClick(object sender, EventArgs e) {
+            Exit exit = new Exit();
+            exit.Show();
+            pause_ButtonClick(sender, e);
         }
     }
 
