@@ -124,6 +124,7 @@ namespace PlaneTrial
             this.instructions_Button.Name = "instructions_Button";
             this.instructions_Button.Size = new System.Drawing.Size(98, 24);
             this.instructions_Button.Text = "Instructions";
+            this.instructions_Button.Click += new System.EventHandler(this.instructions_ButtonClick);
             // 
             // pause_Button
             // 

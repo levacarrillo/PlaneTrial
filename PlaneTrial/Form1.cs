@@ -37,6 +37,7 @@ namespace PlaneTrial
 
             InitializeComponent();
 
+            pause_Button.Enabled = false;
             spaceShipPos_X = spaceShip.Location.X;
             spaceShipPos_Y = spaceShip.Location.Y;
             
@@ -66,11 +67,15 @@ namespace PlaneTrial
             timer.Start();
         }
         private void start_ButtonClick(object sender, EventArgs e) {
-            timer.Start();
             //Mp3Player.play();
             KeyDown += new KeyEventHandler(Form1_KeyDown);
+            if (level == "easy") easy_ButtonClick(sender, e);
+            else if (level == "normal") normal_ButtonClick(sender, e);
+            else if (level == "hard") hard_ButtonClick(sender, e);
+            timer.Start();
+            start_Button.Enabled = false;
+            pause_Button.Enabled = true;
         }
-
         private void easy_ButtonClick(object sender, EventArgs e) {
             level = "easy";
             backGround.Image = Properties.Resources.blue_sky;
@@ -85,8 +90,7 @@ namespace PlaneTrial
             darkShip1.Visible = false;
             darkShip2.Visible = false;
         }
-        private void normal_ButtonClick(object sender, EventArgs e)
-        {
+        private void normal_ButtonClick(object sender, EventArgs e) {
             level = "normal";
             backGround.Image = Properties.Resources.night_sky;
             spaceShip.Visible = true;
@@ -97,8 +101,7 @@ namespace PlaneTrial
             darkShip2.Visible = false;
         }
 
-        private void hard_ButtonClick(object sender, EventArgs e)
-        {
+        private void hard_ButtonClick(object sender, EventArgs e) {
             level = "hard";
             backGround.Image = Properties.Resources.blood_sky;
             spaceShip.Visible = true;
@@ -113,6 +116,8 @@ namespace PlaneTrial
             timer.Stop();
             Mp3Player.stop();
             KeyDown -= new KeyEventHandler(Form1_KeyDown);
+            pause_Button.Enabled = false;
+            start_Button.Enabled = true;
         }
 
         private void Form1_KeyDown(object sender, KeyEventArgs e)
@@ -142,9 +147,7 @@ namespace PlaneTrial
 
             set_position(ref spaceShip, spaceShipPos_X, spaceShipPos_Y);
         }
-        private void timer1_Tick(object sender, EventArgs e)
-        {
-
+        private void timer1_Tick(object sender, EventArgs e) {
             beam_lasser();
             start_level1();
             if (level == "normal" || level == "hard") start_level2();
@@ -209,6 +212,9 @@ namespace PlaneTrial
                     enemies[i].Visible = true;
                 }
             }
+        }
+        private void instructions_ButtonClick(object sender, EventArgs e) {
+            //Form2 = new Form2();
         }
     }
 
