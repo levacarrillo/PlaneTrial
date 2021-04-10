@@ -19,6 +19,8 @@ namespace PlaneTrial
         private static int lassersPos_X;
         private static int lassersPos_Y;
 
+        private static int score = 0;
+        private static int attempts = 3;
         private static string level = "easy";
 
         private static int ship_increment   = 13;
@@ -129,8 +131,13 @@ namespace PlaneTrial
         }
         private void beam_lasser() {
             for (int i = 0; i < enemies.Length; i++) {
-                if (enemies[i].Bounds.IntersectsWith(twoLassers.Bounds))
+                if (enemies[i].Bounds.IntersectsWith(twoLassers.Bounds) && enemies[i].Visible) {
                     vanish(ref enemies[i]);
+                    if (i < 3) score++;
+                    else if (i < 5) score += 3;
+                    else score += 5;
+                    Debug.WriteLine("------Score->" + score);
+                } 
             }
             if (lassersPos_Y > -200) {
                 lassersPos_Y = lassersPos_Y - lasser_increment;
