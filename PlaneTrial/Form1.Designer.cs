@@ -97,6 +97,7 @@ namespace PlaneTrial
             this.level_Button.Name = "level_Button";
             this.level_Button.Size = new System.Drawing.Size(57, 24);
             this.level_Button.Text = "Level";
+            this.level_Button.Click += new System.EventHandler(this.level_ButtonClick);
             // 
             // easy_Button
             // 
@@ -289,7 +290,7 @@ namespace PlaneTrial
             // 
             // timer
             // 
-            this.timer.Interval = 20;
+            this.timer.Interval = 35;
             this.timer.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // Form1

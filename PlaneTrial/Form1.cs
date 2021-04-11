@@ -24,10 +24,11 @@ namespace PlaneTrial
         private static int attempts = 3;
         private static string level = "easy";
 
-        private static int ship_increment   = 13;
-        private static int lasser_increment = 18;
+        private static int ship_increment   = 18;
+        private static int lasser_increment = 28;
 
-        private static int[] enemy_increment = { 6, 6, 6, -3, 3, -1, -1 };
+        private static Random rnd = new Random();
+        private static int[] enemy_increment = { 10, 10, 10, -6, 6, -4, -4 };
         private static int[] enemy_rand_pos  = { 300, 500, 600, 320, 320, 250, 550 };
         private static int[] enemy_restric   = { 522, 522, 522, -87, 824, -121, -121 };
         private static int[] enemy_start_pos = { -125, -125, -125, 830, -90, 549, 549 };
@@ -40,11 +41,15 @@ namespace PlaneTrial
             pause_Button.Enabled = false;
             spaceShipPos_X = spaceShip.Location.X;
             spaceShipPos_Y = spaceShip.Location.Y;
-            
+
             score_label.Text =  "Score: " + score;
             attempts_label.Text = "Attempts: " + attempts;
-
             enemies = new PictureBox[7] { rocket1, rocket2, rocket3, leftShip, rightShip, darkShip1, darkShip2 };
+
+            for (int i = 0; i < 3; i++) enemy_rand_pos[i] = rnd.Next(0, 40) * 20;
+            for (int i = 3; i < 5; i++) enemy_rand_pos[i] = rnd.Next(0, 25) * 20;
+            for (int i = 5; i < enemies.Length; i++) enemy_rand_pos[i] = rnd.Next(0, 40) * 20;
+
             Mp3Player.open_file(soundtrack_file);
         }
 
@@ -56,7 +61,8 @@ namespace PlaneTrial
             set_position(ref  leftShip, enemy_start_pos[3], enemy_rand_pos[3]);
             set_position(ref rightShip, enemy_start_pos[4], enemy_rand_pos[4]);
 
-            for(int i=0; i<3; i++) 
+
+            for (int i=0; i<3; i++) 
                 set_position(ref enemies[i], enemy_rand_pos[i], enemy_start_pos[i]);
             for (int i = 5; i < enemies.Length; i++)
                 set_position(ref enemies[i], enemy_rand_pos[i], enemy_start_pos[i]);
@@ -183,10 +189,11 @@ namespace PlaneTrial
             }
         }
         private void start_level1() {
-            for(int i = 0; i < 3; i++) {
+            for (int i = 0; i < 3; i++) {
                 set_position(ref enemies[i], enemy_rand_pos[i], enemies[i].Location.Y + enemy_increment[i]);
 
                 if (enemies[i].Location.Y >= enemy_restric[i]) {
+                    enemy_rand_pos[i] = rnd.Next(0, 40) * 20;
                     set_position(ref enemies[i], enemy_rand_pos[i], enemy_start_pos[i]);
                     enemies[i].Visible = true;
                 }
@@ -197,10 +204,12 @@ namespace PlaneTrial
             set_position(ref enemies[4], enemies[4].Location.X + enemy_increment[4], enemy_rand_pos[4]);
 
             if (enemies[3].Location.X <= enemy_restric[3]) {
+                enemy_rand_pos[3] = rnd.Next(0, 25) * 20;
                 set_position(ref enemies[3], enemy_start_pos[3], enemy_rand_pos[3]);
                 enemies[3].Visible = true;
             }
             if (enemies[4].Location.X >= enemy_restric[4]) {
+                enemy_rand_pos[4] = rnd.Next(0, 25) * 20;
                 set_position(ref enemies[4], enemy_start_pos[4], enemy_rand_pos[4]);
                 enemies[4].Visible = true;
             }
@@ -210,6 +219,7 @@ namespace PlaneTrial
                 set_position(ref enemies[i], enemy_rand_pos[i], enemies[i].Location.Y + enemy_increment[i]);
 
                 if (enemies[i].Location.Y <= enemy_restric[i]) {
+                    enemy_rand_pos[i] = rnd.Next(0, 40) * 20;
                     set_position(ref enemies[i], enemy_rand_pos[i], enemy_start_pos[i]);
                     enemies[i].Visible = true;
                 }
@@ -237,6 +247,9 @@ namespace PlaneTrial
         }
         public static int get_score() {
             return score;
+        }
+        private void level_ButtonClick(object sender, EventArgs e) {
+            pause_ButtonClick(sender, e);
         }
     }
 

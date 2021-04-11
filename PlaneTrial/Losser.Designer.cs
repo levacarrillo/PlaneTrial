@@ -38,11 +38,11 @@ namespace PlaneTrial
             // 
             this.label.AutoSize = true;
             this.label.Font = new System.Drawing.Font("Segoe UI", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label.Location = new System.Drawing.Point(77, 39);
+            this.label.Location = new System.Drawing.Point(50, 43);
             this.label.Name = "label";
-            this.label.Size = new System.Drawing.Size(121, 30);
+            this.label.Size = new System.Drawing.Size(149, 30);
             this.label.TabIndex = 0;
-            this.label.Text = "You lost =\'(";
+            this.label.Text = "You\'ve lost =\'(";
             // 
             // button
             // 
@@ -68,7 +68,7 @@ namespace PlaneTrial
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(260, 231);
+            this.ClientSize = new System.Drawing.Size(251, 231);
             this.Controls.Add(this.score);
             this.Controls.Add(this.button);
             this.Controls.Add(this.label);
