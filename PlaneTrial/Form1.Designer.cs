@@ -30,6 +30,7 @@ namespace PlaneTrial
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.menuStrip = new System.Windows.Forms.MenuStrip();
             this.start_Button = new System.Windows.Forms.ToolStripMenuItem();
             this.level_Button = new System.Windows.Forms.ToolStripMenuItem();
@@ -302,9 +303,10 @@ namespace PlaneTrial
             this.Controls.Add(this.attempts_label);
             this.Controls.Add(this.backGround);
             this.Controls.Add(this.menuStrip);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip;
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Plane Trial";
             this.menuStrip.ResumeLayout(false);
             this.menuStrip.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.backGround)).EndInit();
